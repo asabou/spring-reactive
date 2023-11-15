@@ -1,0 +1,5 @@
+server:
+  host: localhost
+  port: 8080
+weather:
+  api: https://998d8129-2264-4a98-a92e-ba8bde4a4d1c.mock.pstmn.io/
