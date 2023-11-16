@@ -2,6 +2,7 @@ HELP.md
 .gradle
 build/
 gradle/
+temperatures.csv
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/

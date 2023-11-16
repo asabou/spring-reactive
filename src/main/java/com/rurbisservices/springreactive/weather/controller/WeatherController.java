@@ -25,4 +25,8 @@ public class WeatherController {
         return weatherService.getTemperatureV2(city);
     }
 
+    @GetMapping("/weather")
+    public Flux<TemperatureDTO> get(@RequestParam(name = "city") String city) {
+        return getV2(city);
+    }
 }
