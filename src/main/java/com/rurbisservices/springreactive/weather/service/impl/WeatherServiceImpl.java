@@ -52,12 +52,10 @@ public class WeatherServiceImpl implements IWeatherService {
                     } catch (Exception e) {
                         log.error("error when trying to retrieve data for {}", city);
                     }
+                    log.info("City: {}", city);
                     AvgTempWindDTO avg = getAvgTempWindDTO(cityTemp.getForecast());
                     return new TemperatureDTO(city, avg.getTemperature(), avg.getWind());
-                }).doOnNext(temp -> {
-                    appendToCSV(printer, temp);
-                    System.out.println(temp);
-                });
+                }).doOnNext(temp -> appendToCSV(printer, temp));
     }
 
     /*
@@ -86,13 +84,11 @@ public class WeatherServiceImpl implements IWeatherService {
                                 cityTempFromApi.getWind(), cityTempFromApi.getDescription(), cityTempFromApi.getForecast())
                         )
                 ).map(cityTemp -> {
+                    log.info("City: {}", cityTemp.getCity());
                     AvgTempWindDTO avg = getAvgTempWindDTO(cityTemp.getForecast());
                     return new TemperatureDTO(cityTemp.getCity(), avg.getTemperature(), avg.getWind());
                 })
-                .doOnNext(temp -> {
-                    appendToCSV(printer, temp);
-                    System.out.println(temp);
-                });
+                .doOnNext(temp -> appendToCSV(printer, temp));
     }
 
     private CSVPrinter initCSVPrinter() {
