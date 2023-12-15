@@ -24,11 +24,11 @@ class WeatherApplicationTests {
 	public void getTemperaturesTest() {
 		Flux<TemperatureDTO> tempFlux = Flux.just(new TemperatureDTO("city1", "1", "1"),
 				new TemperatureDTO("city2", "2", "2"));
-		Mockito.when(weatherService.getTemperatureV2(anyString())).thenReturn(tempFlux);
+		Mockito.when(weatherService.getTemperature(anyString())).thenReturn(tempFlux);
 		webTestClient.get().uri("/api/weather?city=city1,city2")
 				.exchange()
 				.expectStatus().isOk();
-		Mockito.verify(weatherService, Mockito.times(1)).getTemperatureV2(anyString());
+		Mockito.verify(weatherService, Mockito.times(1)).getTemperature(anyString());
 	}
 
 }
